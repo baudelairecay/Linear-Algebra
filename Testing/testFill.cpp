@@ -1,0 +1,53 @@
+#include "../matrix.hpp"
+using namespace std;
+
+void visualTestFill(Matrix mat, int data, int numberOfRows, int numberOfColumns){
+    mat.fill(data, numberOfRows, numberOfColumns);
+    mat.print();
+}
+
+void testFill(Matrix mat, vector<vector<int>> expected, int data, int numberOfRows, int numberOfColumns){
+    mat.fill(data, numberOfRows, numberOfColumns);
+    if(mat.getElements() == expected){
+        cout << "All is well" << endl;
+    }else{
+        throw runtime_error("Expected does not equal output");
+    }
+}
+
+int main(void){
+    vector<vector<int>> els = {{1,2,3}, {4,5,6}, {7,8,9}};
+    Matrix mat = Matrix(els); 
+    
+    cout << "testing fill and resize up:" << endl;
+    vector<vector<int>> expected = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
+    visualTestFill(mat, 1,4,4);  
+    testFill(mat, expected,1,4,4);
+
+    cout << "testing fill and resize down:" << endl;
+    expected = {{1,1}, {1,1}};
+    visualTestFill(mat,1,2,2);
+    testFill(mat, expected,1,2,2);
+
+    cout << "testing fill, no resize:" << endl;
+    expected = {{1,1,1}, {1,1,1}, {1,1,1}};
+    visualTestFill(mat,1,3,3);
+    testFill(mat, expected, 1,3,3);
+
+    cout << "testing fill, resize to non-square matrix(more columns):" << endl;
+    expected = {{1,1,1}, {1,1,1}};
+    visualTestFill(mat,1,2,3);
+    testFill(mat,expected, 1,2,3);
+
+    cout << "testing fill, resize to non-square matrix(more rows):" << endl;
+    expected = {{1,1}, {1,1}, {1,1}};
+    visualTestFill(mat,1,3,2);
+    testFill(mat,expected, 1,3,2);
+
+    cout << "Testing what happens when expected size, is different than the give number of rows and/or columns" << endl;
+    expected = {{1,1}, {1,1}, {1,1}};
+    visualTestFill(mat,1,3,3);
+    testFill(mat,expected, 1,3,3);
+
+    return 0;
+}
