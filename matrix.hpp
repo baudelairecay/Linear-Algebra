@@ -12,6 +12,7 @@ class Matrix{
         vector<vector<int>> getElements();
         void add(int data, int row, int col);
         int size(); 
-        void transpose();
+        void fill(int data, int numberOfRows, int numberOfColumns);
         void print();
 };
+Matrix transpose(Matrix mat);

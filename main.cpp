@@ -9,9 +9,9 @@ int main(void){
     cout << "Matrix before transpose:" << endl;
     cout << "rows: " << mat.getNumberOfRows() << " columns: " << mat.getNumberOfColumns() << endl;
     mat.print();
-    mat.transpose();
+    Matrix transposed = transpose(mat);
     cout << "Matrix after transpose:" << endl;
-    cout << "rows: " << mat.getNumberOfRows() << " columns: " << mat.getNumberOfColumns() << endl;
-    mat.print();
+    cout << "rows: " << transposed.getNumberOfRows() << " columns: " << transposed.getNumberOfColumns() << endl;
+    transposed.print();
     return 0;
 }
