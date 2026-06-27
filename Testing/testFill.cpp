@@ -1,26 +1,26 @@
 #include "../matrix.hpp"
 using namespace std;
 
-void visualTestFill(Matrix mat, int data, int numberOfRows, int numberOfColumns){
+void visualTestFill(Matrix mat, float data, int numberOfRows, int numberOfColumns){
     mat.fill(data, numberOfRows, numberOfColumns);
     mat.print();
 }
 
-void testFill(Matrix mat, vector<vector<int>> expected, int data, int numberOfRows, int numberOfColumns){
+void testFill(Matrix mat, vector<vector<float>> expected, float data, int numberOfRows, int numberOfColumns){
     mat.fill(data, numberOfRows, numberOfColumns);
     if(mat.getElements() == expected){
         cout << "All is well" << endl;
     }else{
-        throw runtime_error("Expected does not equal output");
+        throw runtime_error("Output does not equal expected");
     }
 }
 
 int main(void){
-    vector<vector<int>> els = {{1,2,3}, {4,5,6}, {7,8,9}};
+    vector<vector<float>> els = {{1,2,3}, {4,5,6}, {7,8,9}};
     Matrix mat = Matrix(els); 
     
     cout << "testing fill and resize up:" << endl;
-    vector<vector<int>> expected = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
+    vector<vector<float>> expected = {{1,1,1,1}, {1,1,1,1}, {1,1,1,1}, {1,1,1,1}};
     visualTestFill(mat, 1,4,4);  
     testFill(mat, expected,1,4,4);
 

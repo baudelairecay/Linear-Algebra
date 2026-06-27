@@ -11,9 +11,9 @@ void visualTestTranpose(Matrix mat){
 
 }
 int main(void){
-    vector<vector<int>> vec1 = {{1,1}, {1,1}};
-    vector<vector<int>> vec2 = {{1,1,1}, {1,1,1}};
-    vector<vector<int>> vec3 = {{1,1}, {1,1}, {1,1}};
+    vector<vector<float>> vec1 = {{1,1}, {1,1}};
+    vector<vector<float>> vec2 = {{1,1,1}, {1,1,1}};
+    vector<vector<float>> vec3 = {{1,1}, {1,1}, {1,1}};
     Matrix mat1 = Matrix(vec1);
     Matrix mat2 = Matrix(vec2);
     Matrix mat3 = Matrix(vec3);

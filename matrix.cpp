@@ -1,12 +1,6 @@
 #include "matrix.hpp"
 using namespace std;
-
-Matrix::Matrix(int numberOfRows, int numberOfCols){
-    rows = numberOfRows;
-    columns = numberOfCols;
-    elements.resize(numberOfRows, vector<int>(numberOfCols,0));
-}
-Matrix::Matrix(vector<vector<int>> vec){
+Matrix::Matrix(vector<vector<float>> vec){
     if(vec.size() == 0){
         throw runtime_error("Attempt to initalize Matrix with empty vector");
     }
@@ -23,26 +17,17 @@ int Matrix::getNumberOfColumns(){
     return columns;
 }
 
-vector<vector<int>> Matrix::getElements(){
-    vector<vector<int>> copy = elements;
+vector<vector<float>> Matrix::getElements(){
+    vector<vector<float>> copy = elements;
     return copy;
-}
-
-void Matrix::add(int data, int row, int col){
-    if(row >= rows || col >= columns){
-        throw out_of_range("Error: attempt to add element out of bounds");
-    }else if(elements[row][col] != 0){
-        cerr << "Warning: an element has already been stored here" << endl;
-    }
-    elements[row][col] = data;
 }
 
 int Matrix::size(){
     return (rows*columns);
 }
 
-void Matrix::fill(int data, int numberOfRows, int numberOfColumns){
-    vector<vector<int>> tmp(numberOfRows, vector<int>(numberOfColumns, data));
+void Matrix::fill(float data, int numberOfRows, int numberOfColumns){
+    vector<vector<float>> tmp(numberOfRows, vector<float>(numberOfColumns, data));
     rows = numberOfRows;
     columns = numberOfColumns;
     elements = tmp;
@@ -57,10 +42,41 @@ void Matrix::print(){
     }
 }
 
+Matrix add(Matrix A, Matrix B){
+    vector<vector<float>> c = vector(A.getNumberOfRows(), vector<float>(A.getNumberOfColumns(), 0));
+    vector<vector<float>> a = A.getElements();
+    vector<vector<float>> b = B.getElements();
+    if((A.getNumberOfRows() != B.getNumberOfRows()) || (A.getNumberOfColumns() != B.getNumberOfColumns())){
+        throw runtime_error("Matrix addition is undefined for matrices of different sizes");
+    }else{
+        for(size_t i = 0; i < A.getNumberOfRows(); i++){
+            for(size_t j = 0; j < A.getNumberOfColumns(); j++){
+                c[i][j] += a[i][j] + b[i][j];
+            }
+        }
+    }
+    return Matrix(c);
+}
+
+Matrix scalarMul(Matrix mat, float scalar){
+    vector<vector<float>> b = mat.getElements();
+    for(size_t i = 0; i < mat.getNumberOfRows(); i++){
+        for(size_t j = 0; j < mat.getNumberOfColumns(); j++){
+            b[i][j] *= scalar;
+        }
+    }
+    return Matrix(b);
+} 
+
+Matrix sub(Matrix A, Matrix B){
+    Matrix negative_B = scalarMul(B, -1);
+    return add(A, negative_B);
+}
+
 Matrix transpose(Matrix mat){
     int rows = mat.getNumberOfRows();
     int columns = mat.getNumberOfColumns();
-    vector<vector<int>> transposed(columns, vector<int>(rows));
+    vector<vector<float>> transposed(columns, vector<float>(rows));
     for(size_t i = 0; i < rows; i++){
         for(size_t j = 0; j < columns; j++){
             transposed[j][i] = mat.getElements()[i][j];

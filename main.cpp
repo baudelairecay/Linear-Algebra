@@ -4,14 +4,8 @@ using namespace std;
 
 
 int main(void){
-    vector<vector<int>> vec = {{1,2,3}, {4,5,6}, {7,8,9}};
+    vector<vector<float>> vec = {{1,2,3}, {4,5,6}, {7,8,9}};
     Matrix mat(vec);
-    cout << "Matrix before transpose:" << endl;
-    cout << "rows: " << mat.getNumberOfRows() << " columns: " << mat.getNumberOfColumns() << endl;
+    mat.fill(0.007, 10, 10);
     mat.print();
-    Matrix transposed = transpose(mat);
-    cout << "Matrix after transpose:" << endl;
-    cout << "rows: " << transposed.getNumberOfRows() << " columns: " << transposed.getNumberOfColumns() << endl;
-    transposed.print();
-    return 0;
 }
