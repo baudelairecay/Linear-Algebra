@@ -44,6 +44,12 @@ int main(void){
     visualTestFill(mat,1,3,2);
     testFill(mat,expected, 1,3,2);
 
+    cout << "Tesing what happens when you want to resize the array down to 0 rows, and 0 columns" << endl;
+    expected = {};
+    visualTestFill(mat, 0, 0, 0);
+    testFill(mat,expected, 0, 0, 0);
+    cout << mat.size() << endl;
+
     cout << "Testing what happens when expected size, is different than the give number of rows and/or columns" << endl;
     expected = {{1,1}, {1,1}, {1,1}};
     visualTestFill(mat,1,3,3);
