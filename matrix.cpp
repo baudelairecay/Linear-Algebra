@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 using namespace std;
 Matrix::Matrix(vector<vector<float>> vec){
-    if(vec.size() <= 0){
+    if(vec.size() == 0){
         throw runtime_error("Attempt to initalize Matrix with empty vector");
     }
     elements = vec;
@@ -26,7 +26,7 @@ int Matrix::size(){
     return (rows*columns);
 }
 
-void Matrix::fill(float data, int numberOfRows, int numberOfColumns){
+void Matrix::fill(float data, unsigned int numberOfRows, unsigned int numberOfColumns){
     if(numberOfRows <= 0 || numberOfColumns <= 0){
         throw runtime_error("this causes weird behaviour, so I won't allow it");
     }

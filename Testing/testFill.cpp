@@ -47,7 +47,7 @@ int main(void){
     cout << "Tesing what happens when you want to resize the array down to 0 rows, and 0 columns" << endl;
     expected = {};
     visualTestFill(mat, 0, 0, 0);
-    testFill(mat,expected, 0, 0, 0);
+    testFill(mat,expected, 0, -1, -1);
     cout << mat.size() << endl;
 
     cout << "Testing what happens when expected size, is different than the give number of rows and/or columns" << endl;

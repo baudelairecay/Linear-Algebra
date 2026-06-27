@@ -8,7 +8,10 @@ void visualTestTranpose(Matrix mat){
     Matrix transposed = transpose(mat);
     cout << "transpose of matrix:" << endl;
     transposed.print();
+}
 
+void testTranspsoe(Matrix mat, vector<vector<int>> expected){
+    
 }
 int main(void){
     vector<vector<float>> vec1 = {{1,1}, {1,1}};

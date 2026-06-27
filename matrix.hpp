@@ -10,7 +10,7 @@ class Matrix{
         int getNumberOfColumns();
         vector<vector<float>> getElements();
         int size(); 
-        void fill(float data, int numberOfRows, int numberOfColumns);
+        void fill(float data, unsigned int numberOfRows, unsigned int numberOfColumns);
         void print();
 };
 Matrix add(Matrix A, Matrix B);
