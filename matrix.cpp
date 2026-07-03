@@ -76,6 +76,23 @@ Matrix sub(Matrix A, Matrix B){
     return add(A, negative_B);
 }
 
+Matrix mul(Matrix A, Matrix B){
+    if(A.getNumberOfColumns() != B.getNumberOfRows()){
+        throw runtime_error("Matrix Multiplication is not defined for these Matrices");
+    }
+    vector<vector<float>> c(A.getNumberOfRows(), vector<float>(B.getNumberOfColumns(), 0));
+    vector<vector<float>> a = A.getElements();
+    vector<vector<float>> b = B.getElements();
+    for(size_t i = 0; i < A.getNumberOfRows(); i++){
+        for(size_t j = 0; j < B.getNumberOfColumns(); j++){
+            for(size_t k = 0; k < c.size(); k++){
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    return Matrix(c);
+}
+
 Matrix transpose(Matrix mat){
     int rows = mat.getNumberOfRows();
     int columns = mat.getNumberOfColumns();
